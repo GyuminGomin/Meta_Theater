@@ -6,10 +6,12 @@ public class LaserPointer : MonoBehaviour
 {
     private RaycastHit hit;
     // 라인 랜더러 만들 것
-    private LineRenderer line;
-    public Color color = Color.blue;
-    public float maxDistance = 50.0f;
-    public Transform laserMaker;
+    private LineRenderer line; // 라인랜더러를 추가해주기 위한 선언
+    public Color color = Color.blue; // 라인 색깔
+    public float maxDistance = 50.0f; // 광선의 도달 범위
+    public Transform laserMaker; // 레이저마커 연결하기 위해 선언
+    public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
+    public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
 
     // Start is called before the first frame update
     void Start()
@@ -21,21 +23,21 @@ public class LaserPointer : MonoBehaviour
     {
         // LineRenderer 추가
         line = this.gameObject.AddComponent<LineRenderer>();
-        line.useWorldSpace = false;
-        line.receiveShadows = false;
+        line.useWorldSpace = false; // 월드스페이스 제거
+        line.receiveShadows = false; // 그림자 제거
 
         // 시작, 끝 지점 설정
         line.positionCount = 2;
-        line.SetPosition(0, Vector3.zero);
-        line.SetPosition(1, Vector3.forward * maxDistance);
+        line.SetPosition(0, Vector3.zero); // 라인의 초기 위치
+        line.SetPosition(1, Vector3.forward * maxDistance); // 라인의 끝점 위치
 
         // 라인의 폭 설정
         line.startWidth = 0.03f; // 시작점의 폭
         line.endWidth = 0.005f; // 끝지점의 폭
-        line.numCapVertices = 10; // 끝지점의 vertax를 둥글게
+        line.numCapVertices = 10; // 끝지점의 vertax를 둥글게 0~10까지
 
-        // 라인의 머티리얼 지정하고 색상을 설정
-        line.material = new Material(Shader.Find("Unlit/Color")); // unlit은 unlight의 약자
+        // 라인의 머티리얼 지정하고 색상을 설정 (소스코드로 material생성)
+        line.material = new Material(Shader.Find("Unlit/Color")); // unlit은 unlight의 약자 라이트가 없어도 색깔이 보이게 설정해주는 것 (참고로 unlit은 투명상태 지정 불가능)
         line.material.color = this.color;
     }
 
@@ -44,17 +46,18 @@ public class LaserPointer : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
-            line.SetPosition(1, Vector3.forward * hit.distance);
-            laserMaker.position = hit.point + laserMaker.forward * 0.001f;
+            // 무언가 맞게 되면 맞은 지점까지의 설정
+            line.SetPosition(1, Vector3.forward * hit.distance); // 라인이 부딪힌거리까지가 hit.distance
+            laserMaker.position = hit.point + laserMaker.forward * 0.001f; // 실행시켜 레이저가 바라보는 방향을 보고 +를 해줘야함
             // 각도를 법선벡터 방향으로 회전
-            laserMaker.rotation = Quaternion.LookRotation(hit.normal);
+            laserMaker.rotation = Quaternion.LookRotation(hit.normal); // 맞은지점에서 수직을 이루는 (법선벡터)
             laserMaker.GetComponent<SpriteRenderer>().color = Color.yellow;
 
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, rightController)) // 오른쪽껄 누르면 텔레포트로 설정 (왼쪽은 아직 결정안함)
             {
-                StartCoroutine(Teleport(hit.point));
+                StartCoroutine(Teleport(hit.point)); // 맞은 위치로 텔레포트
             }
-            /* #if UNITY_EDITOR
+            /* #if UNITY_EDITOR // 전처리기 이것은 유니티 에디터에서만 실행된다는 의미의 전처리기
                         if (Input.GetMouseButtonDown(0))
                         {
                             StartCoroutine(Teleport(hit.point));
@@ -63,29 +66,29 @@ public class LaserPointer : MonoBehaviour
         }
         else
         {
-            line.SetPosition(1, Vector3.forward * maxDistance);
-            laserMaker.position = transform.position + (transform.forward * maxDistance);
-            laserMaker.rotation = Quaternion.LookRotation(transform.forward);
+            line.SetPosition(1, Vector3.forward * maxDistance); //안 부딪히면 맥스로
+            laserMaker.position = transform.position + (transform.forward * maxDistance); // 컨트롤러 피벗좌표로부터 레이저 끝점 위치로
+            laserMaker.rotation = Quaternion.LookRotation(transform.forward); // 방향을 레이저 끝점을 바라보도록
             laserMaker.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
     IEnumerator Teleport(Vector3 pos)
     {
-        OVRScreenFade.instance.fadeTime = 0.0f;
+        OVRScreenFade.instance.fadeTime = 0.0f; // 즉각적으로 바뀌는 것을 의미
         OVRScreenFade.instance.FadeOut(); // 여기까지가 화면을 블랙으로
 
-        transform.root.position = pos + (Vector3.up * 1.8f);
+        transform.root.position = pos + (Vector3.up * 1.8f); // 임의로 y축으로 1.8m 올려서 1.8을 더해줌, transform.root는 현재 오브젝트의 최상위 오브젝트로 간다.
 
         yield return new WaitForSeconds(0.1f);
 
         OVRScreenFade.instance.fadeTime = 0.2f;
-        OVRScreenFade.instance.FadeIn();
+        OVRScreenFade.instance.FadeIn(); // 0.2초동안 어두웠다가 밝아진다는 의미
     }
 }
 
 /*
-    ADB가 반드시 설치되어 있어야 함
+    ADB가 반드시 설치되어 있어야 함 Android data bridge의 약자
 
     명령 프롬프트
     Gitbash shell에서 이 명령어를 반드시 써야함
