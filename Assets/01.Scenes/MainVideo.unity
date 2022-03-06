@@ -281,8 +281,9 @@ GameObject:
   m_Component:
   - component: {fileID: 428653779}
   - component: {fileID: 428653780}
+  - component: {fileID: 428653781}
   m_Layer: 0
-  m_Name: audioOff
+  m_Name: audioOn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,7 +345,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fca961284686a7745a25b0425a0a73a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c0991854448cc74ca8c00829661d1db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -355,6 +356,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &428653781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428653778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b62738c39feaa3438c58f97759dcaf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  on_image: {fileID: 21300000, guid: 4c0991854448cc74ca8c00829661d1db, type: 3}
+  off_image: {fileID: 21300000, guid: fca961284686a7745a25b0425a0a73a1, type: 3}
+  my_video: {fileID: 1149301982}
 --- !u!1 &519383803
 GameObject:
   m_ObjectHideFlags: 0
