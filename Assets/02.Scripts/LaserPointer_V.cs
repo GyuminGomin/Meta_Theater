@@ -44,14 +44,25 @@ public class LaserPointer_V : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,rightController))
+        {
+            transform.root.Rotate(Vector3.up *22.5f);
+        }
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickLeft,rightController))
+        {
+            transform.root.Rotate(Vector3.up *-22.5f);
+        }
+
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
             // 무언가 맞게 되면 맞은 지점까지의 설정
             line.SetPosition(1, Vector3.forward * hit.distance); // 라인이 부딪힌거리까지가 hit.distance
-            laserMaker.position = hit.point + laserMaker.forward * 0.001f; // 실행시켜 레이저가 바라보는 방향을 보고 +를 해줘야함
+            laserMaker.position = hit.point + laserMaker.forward * 0.1f; // 실행시켜 레이저가 바라보는 방향을 보고 +를 해줘야함
             // 각도를 법선벡터 방향으로 회전
             laserMaker.rotation = Quaternion.LookRotation(hit.normal); // 맞은지점에서 수직을 이루는 (법선벡터)
             laserMaker.GetComponent<SpriteRenderer>().color = Color.yellow;
+            // 레이캐스트가 맞은게 true이면, UI와 인식되어서 터치가 되었다고 가정
+            
 
             /* #if UNITY_EDITOR // 전처리기 이것은 유니티 에디터에서만 실행된다는 의미의 전처리기
                         if (Input.GetMouseButtonDown(0))
