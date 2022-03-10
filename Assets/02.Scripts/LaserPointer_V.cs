@@ -12,7 +12,6 @@ public class LaserPointer_V : MonoBehaviour
     public Transform laserMaker; // 레이저마커 연결하기 위해 선언
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +52,7 @@ public class LaserPointer_V : MonoBehaviour
             transform.root.Rotate(Vector3.up *-22.5f);
         }
 
+
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
             // 무언가 맞게 되면 맞은 지점까지의 설정
@@ -62,7 +62,6 @@ public class LaserPointer_V : MonoBehaviour
             laserMaker.rotation = Quaternion.LookRotation(hit.normal); // 맞은지점에서 수직을 이루는 (법선벡터)
             laserMaker.GetComponent<SpriteRenderer>().color = Color.yellow;
             // 레이캐스트가 맞은게 true이면, UI와 인식되어서 터치가 되었다고 가정
-            
 
             /* #if UNITY_EDITOR // 전처리기 이것은 유니티 에디터에서만 실행된다는 의미의 전처리기
                         if (Input.GetMouseButtonDown(0))

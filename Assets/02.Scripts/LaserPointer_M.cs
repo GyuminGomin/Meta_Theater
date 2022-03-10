@@ -12,11 +12,17 @@ public class LaserPointer_M : MonoBehaviour
     public Transform laserMaker; // 레이저마커 연결하기 위해 선언
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
+    private Rigidbody rigid;
+    private Vector2 axis;
+    [SerializeField]
+    private float speed = 5;
+
 
     // Start is called before the first frame update
     void Start()
     {
         CreateLineRenderer();
+        rigid = this.gameObject.transform.root.GetComponent<Rigidbody>();
     }
 
     void CreateLineRenderer()
@@ -41,9 +47,23 @@ public class LaserPointer_M : MonoBehaviour
         line.material.color = this.color;
     }
 
+
     // Update is called once per frame
     void Update()
     {
+        move();
+        if (OVRInput.GetDown(OVRInput.Button.One,rightController))
+        {
+            rigid.AddForce(Vector3.up*5,ForceMode.Impulse);
+        }
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,rightController))
+        {
+            transform.root.Rotate(Vector3.up *22.5f);
+        }
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickLeft,rightController))
+        {
+            transform.root.Rotate(Vector3.up *-22.5f);
+        }
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
             // 무언가 맞게 되면 맞은 지점까지의 설정
@@ -84,6 +104,13 @@ public class LaserPointer_M : MonoBehaviour
 
         OVRScreenFade.instance.fadeTime = 0.2f;
         OVRScreenFade.instance.FadeIn(); // 0.2초동안 어두웠다가 밝아진다는 의미
+    }
+    void move()
+    {
+        axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, leftController);
+        float fixedY = transform.root.position.y;
+        transform.root.position += (transform.right * axis.x + transform.forward * axis.y) * Time.deltaTime * speed;
+        transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
     }
 }
 

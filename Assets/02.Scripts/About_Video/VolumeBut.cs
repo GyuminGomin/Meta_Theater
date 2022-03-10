@@ -61,16 +61,8 @@ public class VolumeBut : MonoBehaviour
 
     void Update()
     {
-        /* IndexTriggerButClick_R();
-        IndexTriggerButClick_L(); */
-    }
-
-    void OnColliderStay(Collider col)
-    {
-        if (col.gameObject.name == "OVRControllerPrefab")
-        {
-            IndexTriggerButClick_R();
-        }
+        IndexTriggerButClick_R();
+        IndexTriggerButClick_L();
     }
     /* private void OnTriggerEnter(Collider col)
     {
