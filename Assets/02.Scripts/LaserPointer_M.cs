@@ -112,6 +112,28 @@ public class LaserPointer_M : MonoBehaviour
         transform.root.position += (transform.right * axis.x + transform.forward * axis.y) * Time.deltaTime * speed;
         transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
     }
+    /* void OnCollisionEnter(Collision col)
+    {   
+        if (col.gameObject.tag == "WALL"){
+            float fixedY = transform.root.position.y;
+            float fixedX = transform.root.position.x;
+            float fixedZ = transform.root.position.z;
+            transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
+            transform.root.rotation = Quaternion.LookRotation(new Vector3(fixedX,fixedY,fixedZ));
+        } 이것들은 안됨
+    }
+    void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.tag == "WALL"){
+            speed = 0;
+        }
+    }
+    void OnCollisionExit(Collision col)
+    {
+        if (col.gameObject.tag == "WALL"){
+            speed = 0;
+        }
+    } */
 }
 
 /*
