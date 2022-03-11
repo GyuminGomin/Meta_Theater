@@ -16,6 +16,7 @@ public class LaserPointer_M : MonoBehaviour
     private Vector2 axis;
     [SerializeField]
     private float speed = 5;
+    // public GameObject came;
 
 
     // Start is called before the first frame update
@@ -98,7 +99,7 @@ public class LaserPointer_M : MonoBehaviour
         OVRScreenFade.instance.fadeTime = 0.0f; // 즉각적으로 바뀌는 것을 의미
         OVRScreenFade.instance.FadeOut(); // 여기까지가 화면을 블랙으로
 
-        transform.root.position = pos + (Vector3.up * 1.8f); // 임의로 y축으로 1.8m 올려서 1.8을 더해줌, transform.root는 현재 오브젝트의 최상위 오브젝트로 간다.
+        transform.root.position = pos /* + (Vector3.up * 1.8f) */; // 임의로 y축으로 1.8m 올려서 1.8을 더해줌, transform.root는 현재 오브젝트의 최상위 오브젝트로 간다.
 
         yield return new WaitForSeconds(0.1f);
 
@@ -107,9 +108,10 @@ public class LaserPointer_M : MonoBehaviour
     }
     void move()
     {
+        //Vector3 cam_pos=new Vector3(came.transform.position.x,0,came.transform.position.z); // 이렇게 쓰는 순간 값이 급격하게 상승하더라.. EyeAnchor에 출력되는 값과 다르게 최대의 값이 나오네..ㄷㄷ
         axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, leftController);
         float fixedY = transform.root.position.y;
-        transform.root.position += (transform.right * axis.x + transform.forward * axis.y) * Time.deltaTime * speed;
+        transform.root.position += (transform.right * axis.x + transform.forward * axis.y) * Time.deltaTime * speed /*+ (cam_pos) */;
         transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
     }
     /* void OnCollisionEnter(Collision col)
