@@ -2,53 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 using TMPro;
 
-public class QuitBut : MonoBehaviour
+public class SkipBut : MonoBehaviour
 {
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
-    private bool isQuit = false;
     public VideoPlayer my_video;
-    public TMP_Text notice;
+    private bool isSkip = false;
+    public TMP_Text notice; // skip 알림창
     [SerializeField]
     private GameObject canvas;
+    // Start is called before the first frame update
     void Start()
     {
         canvas.SetActive(false);
         notice.color = new Color32(255,255,255,255);
     }
+
+    // Update is called once per frame
     void Update()
     {
         StartCoroutine(Skip());
     }
     IEnumerator Skip()
     {
-        if(!isQuit)
+        if(!isSkip)
         {
-            if (OVRInput.GetDown(OVRInput.Button.Two,leftController))
+            if (OVRInput.GetDown(OVRInput.Button.One,leftController))
             {
                 canvas.SetActive(true);
                 my_video.Pause();
-                notice.text = "Do you want to Quit? \n y : Left click again \n n : Right click again";
+                notice.text = "Do you want to skip? \n y : Left click again \n n : right click again";
                 yield return new WaitForSeconds(2f);
-                isQuit = true;
+                isSkip = true;
             }
         }
-        if(isQuit)
+        if(isSkip)
         {
-            if (OVRInput.GetDown(OVRInput.Button.Two,leftController))
+            if (OVRInput.GetDown(OVRInput.Button.One,leftController))
             {
-                canvas.SetActive(false);      
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else  
-            Application.Quit();
-#endif
+                canvas.SetActive(false);
+                SceneManager.LoadScene(1);
             }
-            if (OVRInput.GetDown(OVRInput.Button.Two,rightController)) // 스킵 취소
+            if (OVRInput.GetDown(OVRInput.Button.One,rightController)) // 스킵 취소
             {
-                isQuit = false;
+                isSkip = false;
                 canvas.SetActive(false);
                 my_video.Play();
             }

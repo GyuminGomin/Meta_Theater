@@ -26,6 +26,7 @@ public class SceneMgr : MonoBehaviour
     public void ChangeScene() // 이 함수만 호출하면 씬전환가능
     {
         SceneManager.LoadScene(1);
+        
     }
     /* void Update()
     {
