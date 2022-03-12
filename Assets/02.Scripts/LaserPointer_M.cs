@@ -16,7 +16,8 @@ public class LaserPointer_M : MonoBehaviour
     private Vector2 axis;
     [SerializeField]
     private float speed = 5;
-    // public GameObject came;
+    
+    // public GameObject came;hi
 
 
     // Start is called before the first frame update
@@ -73,11 +74,11 @@ public class LaserPointer_M : MonoBehaviour
             // 각도를 법선벡터 방향으로 회전
             laserMaker.rotation = Quaternion.LookRotation(hit.normal); // 맞은지점에서 수직을 이루는 (법선벡터)
             laserMaker.GetComponent<SpriteRenderer>().color = Color.yellow;
-
+            
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, rightController)) // 오른쪽껄 누르면 텔레포트로 설정 (왼쪽은 아직 결정안함)
-            {
-                StartCoroutine(Teleport(hit.point)); // 맞은 위치로 텔레포트
-            }
+                {
+                    tele(); // 맞은 위치로 텔레포트
+                }
             /* #if UNITY_EDITOR // 전처리기 이것은 유니티 에디터에서만 실행된다는 의미의 전처리기
                         if (Input.GetMouseButtonDown(0))
                         {
@@ -106,25 +107,30 @@ public class LaserPointer_M : MonoBehaviour
         OVRScreenFade.instance.fadeTime = 0.2f;
         OVRScreenFade.instance.FadeIn(); // 0.2초동안 어두웠다가 밝아진다는 의미
     }
-    void move()
+    async void move()
     {
         //Vector3 cam_pos=new Vector3(came.transform.position.x,0,came.transform.position.z); // 이렇게 쓰는 순간 값이 급격하게 상승하더라.. EyeAnchor에 출력되는 값과 다르게 최대의 값이 나오네..ㄷㄷ
         axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, leftController);
         float fixedY = transform.root.position.y;
-        transform.root.position += (transform.right * axis.x + transform.forward * axis.y) * Time.deltaTime * speed /*+ (cam_pos) */;
+        transform.root.position += (transform.right * axis.x + transform.forward * axis.y) * Time.deltaTime * speed;
         transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
+    }
+    public void tele()
+    {
+            StartCoroutine(Teleport(hit.point));
     }
     /* void OnCollisionEnter(Collision col)
     {   
-        if (col.gameObject.tag == "WALL"){
+
+        /* if (col.gameObject.tag == "WALL"){
             float fixedY = transform.root.position.y;
             float fixedX = transform.root.position.x;
             float fixedZ = transform.root.position.z;
             transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
             transform.root.rotation = Quaternion.LookRotation(new Vector3(fixedX,fixedY,fixedZ));
-        } 이것들은 안됨
-    }
-    void OnCollisionStay(Collision col)
+        } */ 
+} 
+    /* void OnCollisionStay(Collision col)
     {
         if (col.gameObject.tag == "WALL"){
             speed = 0;
@@ -136,7 +142,7 @@ public class LaserPointer_M : MonoBehaviour
             speed = 0;
         }
     } */
-}
+
 
 /*
     ADB가 반드시 설치되어 있어야 함 Android data bridge의 약자
