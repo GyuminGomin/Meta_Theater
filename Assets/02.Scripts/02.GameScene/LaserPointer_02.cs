@@ -56,7 +56,7 @@ public class LaserPointer_02 : MonoBehaviour
         move();
         if (OVRInput.GetDown(OVRInput.Button.One,rightController))
         {
-            rigid.AddForce(Vector3.up*2,ForceMode.Impulse);
+            rigid.AddForce(Vector3.up*3,ForceMode.Impulse);
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,rightController))
         {
