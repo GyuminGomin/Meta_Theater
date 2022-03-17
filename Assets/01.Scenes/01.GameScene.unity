@@ -4123,6 +4123,7 @@ MonoBehaviour:
   leftController: 1
   rightController: 2
   speed: 5
+  ovrcamerarig: {fileID: 1389493860}
 --- !u!1 &1008993901
 GameObject:
   m_ObjectHideFlags: 0

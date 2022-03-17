@@ -16,8 +16,10 @@ public class LaserPointer_M : MonoBehaviour
     private Vector2 axis;
     [SerializeField]
     private float speed = 5;
-    
-    // public GameObject came;hi
+    // [SerializeField]
+    // private Transform eyeAnchor;
+    [SerializeField]
+    OVRCameraRig ovrcamerarig;
 
 
     // Start is called before the first frame update
@@ -107,7 +109,7 @@ public class LaserPointer_M : MonoBehaviour
         OVRScreenFade.instance.fadeTime = 0.2f;
         OVRScreenFade.instance.FadeIn(); // 0.2초동안 어두웠다가 밝아진다는 의미
     }
-    async void move()
+    void move()
     {
         //Vector3 cam_pos=new Vector3(came.transform.position.x,0,came.transform.position.z); // 이렇게 쓰는 순간 값이 급격하게 상승하더라.. EyeAnchor에 출력되는 값과 다르게 최대의 값이 나오네..ㄷㄷ
         axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, leftController);
