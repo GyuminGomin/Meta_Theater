@@ -12,21 +12,18 @@ public class LaserPointer_M : MonoBehaviour
     public Transform laserMaker; // 레이저마커 연결하기 위해 선언
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
-    private Rigidbody rigid;
     private Vector2 axis;
     [SerializeField]
     private float speed = 5;
-    // [SerializeField]
-    // private Transform eyeAnchor;
     [SerializeField]
     OVRCameraRig ovrcamerarig;
+    private bool isRaser = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         CreateLineRenderer();
-        rigid = this.gameObject.transform.root.GetComponent<Rigidbody>();
     }
 
     void CreateLineRenderer()
@@ -56,10 +53,6 @@ public class LaserPointer_M : MonoBehaviour
     void Update()
     {
         move();
-        if (OVRInput.GetDown(OVRInput.Button.One,rightController))
-        {
-            rigid.AddForce(Vector3.up*5,ForceMode.Impulse);
-        }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,rightController))
         {
             transform.root.Rotate(Vector3.up *22.5f);
@@ -68,6 +61,7 @@ public class LaserPointer_M : MonoBehaviour
         {
             transform.root.Rotate(Vector3.up *-22.5f);
         }
+        raserCtr();
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
             // 무언가 맞게 되면 맞은 지점까지의 설정
@@ -120,6 +114,27 @@ public class LaserPointer_M : MonoBehaviour
     public void tele()
     {
             StartCoroutine(Teleport(hit.point));
+    }
+    void raserCtr()
+    {
+        if (isRaser)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Two,rightController))
+            {
+                line.enabled = false;
+                laserMaker.gameObject.SetActive(false);
+                isRaser = false;
+            }
+        }
+        else
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Two,rightController))
+            {
+                line.enabled = true;
+                laserMaker.gameObject.SetActive(true);
+                isRaser = true;
+            }
+        }
     }
     /* void OnCollisionEnter(Collision col)
     {   

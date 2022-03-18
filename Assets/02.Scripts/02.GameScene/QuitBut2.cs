@@ -4,32 +4,33 @@ using UnityEngine;
 using UnityEngine.Video;
 using TMPro;
 
-public class QuitBut : MonoBehaviour
+public class QuitBut2 : MonoBehaviour
 {
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
     private bool isQuit = false;
-    public VideoPlayer my_video;
     public TMP_Text notice;
     [SerializeField]
     private GameObject canvas;
+    [SerializeField]
+    private GameObject ns_Cockpit_2;
+
     void Start()
     {
         canvas.SetActive(false);
-        notice.color = new Color32(255,255,255,255);
     }
     void Update()
     {
-        StartCoroutine(Skip());
+        StartCoroutine(Quit());
     }
-    IEnumerator Skip()
+    IEnumerator Quit()
     {
         if(!isQuit)
         {
             if (OVRInput.GetDown(OVRInput.Button.Two,leftController))
             {
                 canvas.SetActive(true);
-                my_video.Pause();
+                ns_Cockpit_2.SetActive(false);
                 notice.text = "Do you want to Quit? \n y : Left click again \n n : Right click again";
                 yield return new WaitForSeconds(2f);
                 isQuit = true;
@@ -39,7 +40,8 @@ public class QuitBut : MonoBehaviour
         {
             if (OVRInput.GetDown(OVRInput.Button.Two,leftController))
             {
-                canvas.SetActive(false);      
+                canvas.SetActive(false);
+                ns_Cockpit_2.SetActive(true);
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else  
@@ -50,7 +52,7 @@ public class QuitBut : MonoBehaviour
             {
                 isQuit = false;
                 canvas.SetActive(false);
-                my_video.Play();
+                ns_Cockpit_2.SetActive(true);
             }
         }
     }
