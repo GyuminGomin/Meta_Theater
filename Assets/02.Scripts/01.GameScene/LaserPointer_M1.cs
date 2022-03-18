@@ -12,14 +12,9 @@ public class LaserPointer_M1 : MonoBehaviour
     public Transform laserMaker; // 레이저마커 연결하기 위해 선언
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
-    // private Rigidbody rigid;
-    // private Vector2 axis;
-    // [SerializeField]
-    // private float speed = 5;
-    // public GameObject came;
+    private bool isRaser = false;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         CreateLineRenderer();
@@ -52,19 +47,7 @@ public class LaserPointer_M1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // move();
-        // if (OVRInput.GetDown(OVRInput.Button.One,rightController))
-        // {
-        //     rigid.AddForce(Vector3.up*5,ForceMode.Impulse);
-        // }
-        // if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,rightController))
-        // {
-        //     transform.root.Rotate(Vector3.up *22.5f);
-        // }
-        // if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickLeft,rightController))
-        // {
-        //     transform.root.Rotate(Vector3.up *-22.5f);
-        // }
+        raserCtr();
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
             // 무언가 맞게 되면 맞은 지점까지의 설정
@@ -106,36 +89,27 @@ public class LaserPointer_M1 : MonoBehaviour
         OVRScreenFade.instance.fadeTime = 0.2f;
         OVRScreenFade.instance.FadeIn(); // 0.2초동안 어두웠다가 밝아진다는 의미
     }
-    // void move()
-    // {
-    //     //Vector3 cam_pos=new Vector3(came.transform.position.x,0,came.transform.position.z); // 이렇게 쓰는 순간 값이 급격하게 상승하더라.. EyeAnchor에 출력되는 값과 다르게 최대의 값이 나오네..ㄷㄷ
-    //     axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, leftController);
-    //     float fixedY = transform.root.position.y;
-    //     transform.root.position += (transform.right * axis.x + transform.forward * axis.y) * Time.deltaTime * speed /*+ (cam_pos) */;
-    //     transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
-    // }
-    /* void OnCollisionEnter(Collision col)
-    {   
-        if (col.gameObject.tag == "WALL"){
-            float fixedY = transform.root.position.y;
-            float fixedX = transform.root.position.x;
-            float fixedZ = transform.root.position.z;
-            transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
-            transform.root.rotation = Quaternion.LookRotation(new Vector3(fixedX,fixedY,fixedZ));
-        } 이것들은 안됨
-    }
-    void OnCollisionStay(Collision col)
+    void raserCtr()
     {
-        if (col.gameObject.tag == "WALL"){
-            speed = 0;
+        if (isRaser)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Two,rightController))
+            {
+                line.enabled = false;
+                laserMaker.gameObject.SetActive(false);
+                isRaser = false;
+            }
+        }
+        else
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Two,rightController))
+            {
+                line.enabled = true;
+                laserMaker.gameObject.SetActive(true);
+                isRaser = true;
+            }
         }
     }
-    void OnCollisionExit(Collision col)
-    {
-        if (col.gameObject.tag == "WALL"){
-            speed = 0;
-        }
-    } */
 }
 
 /*

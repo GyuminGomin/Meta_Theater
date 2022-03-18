@@ -16,7 +16,6 @@ public class QuitBut : MonoBehaviour
     void Start()
     {
         canvas.SetActive(false);
-        notice.color = new Color32(255,255,255,255);
     }
     void Update()
     {

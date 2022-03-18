@@ -12,7 +12,8 @@ public class LaserPointer_04L : MonoBehaviour
     public Transform laserMaker; // 레이저마커 연결하기 위해 선언
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
-    // Start is called before the first frame update
+    private bool isRaser = false;
+
     void Start()
     {
         CreateLineRenderer();
@@ -43,6 +44,7 @@ public class LaserPointer_04L : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        raserCtr();
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
             // 무언가 맞게 되면 맞은 지점까지의 설정
@@ -72,6 +74,27 @@ public class LaserPointer_04L : MonoBehaviour
 
         OVRScreenFade.instance.fadeTime = 0.2f;
         OVRScreenFade.instance.FadeIn(); // 0.2초동안 어두웠다가 밝아진다는 의미
+    }
+    void raserCtr()
+    {
+        if (isRaser)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Two,rightController))
+            {
+                line.enabled = false;
+                laserMaker.gameObject.SetActive(false);
+                isRaser = false;
+            }
+        }
+        else
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Two,rightController))
+            {
+                line.enabled = true;
+                laserMaker.gameObject.SetActive(true);
+                isRaser = true;
+            }
+        }
     }
 }
 

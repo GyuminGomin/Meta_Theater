@@ -44,14 +44,6 @@ public class LaserPointer_04 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,rightController))
-        {
-            transform.root.Rotate(Vector3.up *22.5f);
-        }
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickLeft,rightController))
-        {
-            transform.root.Rotate(Vector3.up *-22.5f);
-        }
         raserCtr();
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
