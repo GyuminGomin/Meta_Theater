@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserPointer_02 : MonoBehaviour
+public class LaserPointer_S1 : MonoBehaviour
 {
     private RaycastHit hit;
     // 라인 랜더러 만들 것
@@ -16,8 +16,11 @@ public class LaserPointer_02 : MonoBehaviour
     private Vector2 axis;
     [SerializeField]
     private float speed = 5;
-    private bool isRaser = false;
-    // public GameObject came;
+    // [SerializeField]
+    // private Transform eyeAnchor;
+    // [SerializeField]
+    // OVRCameraRig ovrcamerarig;
+    // Transform ovrTr;
 
 
     // Start is called before the first frame update
@@ -25,6 +28,7 @@ public class LaserPointer_02 : MonoBehaviour
     {
         CreateLineRenderer();
         rigid = this.gameObject.transform.root.GetComponent<Rigidbody>();
+        // ovrTr = ovrcamerarig.centerEyeAnchor.transform;
     }
 
     void CreateLineRenderer()
@@ -54,11 +58,11 @@ public class LaserPointer_02 : MonoBehaviour
     void Update()
     {
         move();
-        if (OVRInput.Get(OVRInput.Button.One,rightController))
+        // transform.root.position = new Vector3(ovrTr.position.x,0,ovrTr.position.z)*Time.deltaTime;
+        // transform.root.position += (ovrTr.right + ovrTr.forward)*Time.deltaTime;
+        if (OVRInput.GetDown(OVRInput.Button.One,rightController))
         {
-            rigid.AddForce(Vector3.up*0.5f,ForceMode.Impulse);
-            OVRInput.SetControllerVibration(0.8f, 0.9f, rightController);
-            OVRInput.SetControllerVibration(0.8f, 0.9f, leftController);
+            rigid.AddForce(Vector3.up*5,ForceMode.Impulse);
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,rightController))
         {
@@ -68,7 +72,6 @@ public class LaserPointer_02 : MonoBehaviour
         {
             transform.root.Rotate(Vector3.up *-22.5f);
         }
-        raserCtr();
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
             // 무언가 맞게 되면 맞은 지점까지의 설정
@@ -77,6 +80,11 @@ public class LaserPointer_02 : MonoBehaviour
             // 각도를 법선벡터 방향으로 회전
             laserMaker.rotation = Quaternion.LookRotation(hit.normal); // 맞은지점에서 수직을 이루는 (법선벡터)
             laserMaker.GetComponent<SpriteRenderer>().color = Color.yellow;
+            
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, rightController)) // 오른쪽껄 누르면 텔레포트로 설정 (왼쪽은 아직 결정안함)
+                {
+                    tele(); // 맞은 위치로 텔레포트
+                }
             /* #if UNITY_EDITOR // 전처리기 이것은 유니티 에디터에서만 실행된다는 의미의 전처리기
                         if (Input.GetMouseButtonDown(0))
                         {
@@ -93,34 +101,64 @@ public class LaserPointer_02 : MonoBehaviour
         }
     }
 
+    IEnumerator Teleport(Vector3 pos)
+    {
+        OVRScreenFade.instance.fadeTime = 0.0f; // 즉각적으로 바뀌는 것을 의미
+        OVRScreenFade.instance.FadeOut(); // 여기까지가 화면을 블랙으로
+
+        transform.root.position = pos /* + (Vector3.up * 1.8f) */; // 임의로 y축으로 1.8m 올려서 1.8을 더해줌, transform.root는 현재 오브젝트의 최상위 오브젝트로 간다.
+
+        yield return new WaitForSeconds(0.1f);
+
+        OVRScreenFade.instance.fadeTime = 0.2f;
+        OVRScreenFade.instance.FadeIn(); // 0.2초동안 어두웠다가 밝아진다는 의미
+    }
     void move()
     {
         //Vector3 cam_pos=new Vector3(came.transform.position.x,0,came.transform.position.z); // 이렇게 쓰는 순간 값이 급격하게 상승하더라.. EyeAnchor에 출력되는 값과 다르게 최대의 값이 나오네..ㄷㄷ
         axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, leftController);
         float fixedY = transform.root.position.y;
-        transform.root.position += (transform.right * axis.x + transform.forward * axis.y) * Time.deltaTime * speed /*+ (cam_pos) */;
+        transform.root.position += (transform.right * axis.x + transform.forward * axis.y) * Time.deltaTime * speed;
         transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
     }
-
-    void raserCtr()
+    public void tele()
     {
-        if (isRaser)
-        {
-            if (OVRInput.GetDown(OVRInput.Button.Two,rightController))
-            {
-                line.enabled = false;
-                laserMaker.gameObject.SetActive(false);
-                isRaser = false;
-            }
-        }
-        else
-        {
-            if (OVRInput.GetDown(OVRInput.Button.Two,rightController))
-            {
-                line.enabled = true;
-                laserMaker.gameObject.SetActive(true);
-                isRaser = true;
-            }
+            StartCoroutine(Teleport(hit.point));
+    }
+    /* void OnCollisionEnter(Collision col)
+    {   
+
+        /* if (col.gameObject.tag == "WALL"){
+            float fixedY = transform.root.position.y;
+            float fixedX = transform.root.position.x;
+            float fixedZ = transform.root.position.z;
+            transform.root.position = new Vector3(transform.root.position.x, fixedY, transform.root.position.z);
+            transform.root.rotation = Quaternion.LookRotation(new Vector3(fixedX,fixedY,fixedZ));
+        } */ 
+} 
+    /* void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.tag == "WALL"){
+            speed = 0;
         }
     }
-}
+    void OnCollisionExit(Collision col)
+    {
+        if (col.gameObject.tag == "WALL"){
+            speed = 0;
+        }
+    } */
+
+
+/*
+    ADB가 반드시 설치되어 있어야 함 Android data bridge의 약자
+
+    명령 프롬프트
+    Gitbash shell에서 이 명령어를 반드시 써야함
+
+
+    // 근접센서 비활성화 ( 배터리는 빨리 닳음 )  --- oculus 커맨드 맵 이라는 것을 검색하면 더 유용한걸 찾을 수 있다.
+    > adb shell am broadcast -a com.oculus.vrpowermanager.automation_disable
+    // 근접센서 활성화
+    $ adb shell am broadcast -a com.oculus.vrpowermanager.prox_close
+*/

@@ -2847,8 +2847,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1773747806}
-  m_Father: {fileID: 1196697411}
-  m_RootOrder: 25
+  - {fileID: 1214979604}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &552511472
 MonoBehaviour:
@@ -3016,7 +3017,7 @@ GameObject:
   - component: {fileID: 567797159}
   - component: {fileID: 567797158}
   - component: {fileID: 567797157}
-  - component: {fileID: 567797156}
+  - component: {fileID: 567797161}
   m_Layer: 7
   m_Name: OVRControllerPrefab
   m_TagString: Untagged
@@ -3045,23 +3046,6 @@ Transform:
   m_Father: {fileID: 1989500191}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &567797156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 567797154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dddad1df1a51ec4a8fafb2c81ac0f67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 1, a: 1}
-  maxDistance: 50
-  laserMaker: {fileID: 0}
-  leftController: 1
-  rightController: 2
 --- !u!135 &567797157
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3132,6 +3116,24 @@ MonoBehaviour:
   m_modelOculusTouchQuest2LeftController: {fileID: 1865592378}
   m_modelOculusTouchQuest2RightController: {fileID: 1624316199}
   m_controller: 1
+--- !u!114 &567797161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567797154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4541d6ff1f9ab8c4f9a0699c929c340e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 1, a: 1}
+  maxDistance: 50
+  laserMaker: {fileID: 0}
+  leftController: 1
+  rightController: 2
+  speed: 5
 --- !u!1 &572383138
 GameObject:
   m_ObjectHideFlags: 0
@@ -5886,7 +5888,7 @@ GameObject:
   - component: {fileID: 1096581371}
   - component: {fileID: 1096581370}
   - component: {fileID: 1096581369}
-  - component: {fileID: 1096581368}
+  - component: {fileID: 1096581373}
   m_Layer: 7
   m_Name: OVRControllerPrefab
   m_TagString: Untagged
@@ -5915,25 +5917,6 @@ Transform:
   m_Father: {fileID: 2066350631}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1096581368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096581366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97b35fd3fe0f3e489b2bc78785b2d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 1, a: 1}
-  maxDistance: 50
-  laserMaker: {fileID: 0}
-  leftController: 1
-  rightController: 2
-  speed: 5
-  ovrcamerarig: {fileID: 552511474}
 --- !u!135 &1096581369
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6004,6 +5987,23 @@ MonoBehaviour:
   m_modelOculusTouchQuest2LeftController: {fileID: 2090441397}
   m_modelOculusTouchQuest2RightController: {fileID: 613233926}
   m_controller: 2
+--- !u!114 &1096581373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096581366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5534e7ec2488ad84e9e76071141c4486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 1, a: 1}
+  maxDistance: 50
+  laserMaker: {fileID: 0}
+  leftController: 1
+  rightController: 2
 --- !u!1 &1119933866
 GameObject:
   m_ObjectHideFlags: 0
@@ -6361,7 +6361,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1196697411}
   m_Father: {fileID: 1773747806}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6469,7 +6470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196697408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.8, z: -0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6497,10 +6498,8 @@ Transform:
   - {fileID: 1009211354}
   - {fileID: 1236013818}
   - {fileID: 1003850399}
-  - {fileID: 1214979604}
-  - {fileID: 552511471}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1189853557}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1205595157
 GameObject:
@@ -6620,12 +6619,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214979603}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0.09}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1196697411}
-  m_RootOrder: 24
+  m_Father: {fileID: 552511471}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1214979605
 MonoBehaviour:
