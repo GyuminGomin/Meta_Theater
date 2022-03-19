@@ -6,6 +6,7 @@ public class AudioScr3 : MonoBehaviour
 {
     public AudioClip audioBack;
     AudioSource audioSource;
+    
     void Awake()
     {
         audioSource = this.gameObject.GetComponent<AudioSource>();
