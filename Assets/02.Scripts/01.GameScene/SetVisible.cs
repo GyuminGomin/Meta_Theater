@@ -53,7 +53,7 @@ public class SetVisible : MonoBehaviour
         if  (data==1)
         {
             if (OVRInput.GetDown(OVRInput.Button.One,leftController))
-            {   
+            {
                 data -= 1;
                 isStart = true;
                 SceneManager.LoadScene(2);

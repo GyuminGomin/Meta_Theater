@@ -42,11 +42,7 @@ public class QuitBut2 : MonoBehaviour
             {
                 canvas.SetActive(false);
                 ns_Cockpit_2.SetActive(true);
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else  
-            Application.Quit();
-#endif
+                Application.Quit();
             }
             if (OVRInput.GetDown(OVRInput.Button.Two,rightController)) // 나가기 취소
             {

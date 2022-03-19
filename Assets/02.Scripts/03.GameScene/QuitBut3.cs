@@ -38,11 +38,7 @@ public class QuitBut3 : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.Two,leftController))
             {
                 canvas.SetActive(false);
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else  
-            Application.Quit();
-#endif
+                Application.Quit();
             }
             if (OVRInput.GetDown(OVRInput.Button.Two,rightController)) // 나가기 취소
             {
