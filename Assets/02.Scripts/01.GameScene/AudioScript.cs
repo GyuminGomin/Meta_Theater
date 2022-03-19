@@ -21,7 +21,7 @@ public class AudioScript : MonoBehaviour
     {
         BGM = gameObject.AddComponent<AudioSource>();
         BGM.loop = true;
-        if(BGMList.Length > 0) PlayBGM(BGMList[0].name); 
+        if(BGMList.Length > 0) PlayBGM(BGMList[0].name);
     }
 
     public void PlayBGM(string name)
@@ -39,11 +39,11 @@ public class AudioScript : MonoBehaviour
 
     /* public string bgmName = "";
 
-    private GameObject CamObject;
+    private GameObject PlayerObject;
 
     void Start()
     {
-        CamObject = GameObject.Find("Main Camera");
+        PlayerObject = GameObject.Find("astronaut");
     }
 
     private void OnTriggerEnter(Collider other)
