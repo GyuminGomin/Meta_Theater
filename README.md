@@ -17,7 +17,7 @@ using Assets...
 (https://assetstore.unity.com/packages/tools/particles-effects/black-hole-free-66568) = Blackhole Free  
 (https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014) = Free AllSky 10  
 
-2. Pay Assets
+2. Pay Assets  
 (https://assetstore.unity.com/packages/3d/characters/sci-fi-astronaut-hdrp-urp-built-in-rigged-200136#content) = Sci-Fi Astronaut  
 (https://assetstore.unity.com/packages/3d/environments/sci-fi/black-hole-universal-render-pipeline-208177) = Blackhole  
 (https://assetstore.unity.com/packages/vfx/particles/wormhole-tunnel-fx-150610) = Warmhole-tunnel  
