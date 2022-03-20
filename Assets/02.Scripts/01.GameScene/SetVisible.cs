@@ -17,7 +17,6 @@ public class SetVisible : MonoBehaviour
     private GameObject SoundObject;
     public string effSoundName = "Jump";
     public string effSoundName1 = "Run";
-    private Vector2 axis;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +24,6 @@ public class SetVisible : MonoBehaviour
         notice_canvas.SetActive(false);
         rigid = this.gameObject.transform.root.GetComponent<Rigidbody>();
         SoundObject = GameObject.Find("JumpSound");
-        axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, leftController);
     }
 
     // Update is called once per frame
@@ -39,10 +37,15 @@ public class SetVisible : MonoBehaviour
                 SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName);
             }
         }
-        if (axis.x>0 ||axis.y>0)
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickUp,leftController))
         {
             SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
+            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = true;
         } 
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickUp,leftController))
+        {
+            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = false;
+        }
         StartCoroutine(OneBtn());
     }
 

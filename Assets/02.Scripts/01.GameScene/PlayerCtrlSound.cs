@@ -13,7 +13,7 @@ public class PlayerCtrlSound : MonoBehaviour
     }
 
     public BgmType[] BGMList;
-    private AudioSource audio;
+    public AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
