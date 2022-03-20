@@ -61,7 +61,6 @@ public class SetVisible : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.One,rightController))
             {
                 notice_canvas.SetActive(false);
-                yield return new WaitForSeconds(0.5f);
                 data -= 1; // data = 0
                 isStart = true;
             }
