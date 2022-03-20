@@ -12,14 +12,22 @@ public class QuitBut3 : MonoBehaviour
     public TMP_Text notice;
     [SerializeField]
     private GameObject canvas;
+    private Rigidbody rigid;
 
     void Start()
     {
         canvas.SetActive(false);
+        rigid = this.gameObject.transform.root.GetComponent<Rigidbody>();
     }
     void Update()
     {
-        StartCoroutine(Quit());
+        if (OVRInput.Get(OVRInput.Button.One,rightController))
+        {
+            rigid.AddForce(Vector3.up*0.5f,ForceMode.Impulse);
+            OVRInput.SetControllerVibration(0.8f, 0.9f, rightController);
+            OVRInput.SetControllerVibration(0.8f, 0.9f, leftController);
+        }
+        StartCoroutine(Quit());  
     }
     IEnumerator Quit()
     {

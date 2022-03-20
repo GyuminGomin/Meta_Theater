@@ -12,7 +12,6 @@ public class LaserPointer_02 : MonoBehaviour
     public Transform laserMaker; // 레이저마커 연결하기 위해 선언
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
-    private Rigidbody rigid;
     private Vector2 axis;
     [SerializeField]
     private float speed = 5;
@@ -24,7 +23,6 @@ public class LaserPointer_02 : MonoBehaviour
     void Start()
     {
         CreateLineRenderer();
-        rigid = this.gameObject.transform.root.GetComponent<Rigidbody>();
     }
 
     void CreateLineRenderer()
@@ -54,12 +52,6 @@ public class LaserPointer_02 : MonoBehaviour
     void Update()
     {
         move();
-        if (OVRInput.Get(OVRInput.Button.One,rightController))
-        {
-            rigid.AddForce(Vector3.up*0.5f,ForceMode.Impulse);
-            OVRInput.SetControllerVibration(0.8f, 0.9f, rightController);
-            OVRInput.SetControllerVibration(0.8f, 0.9f, leftController);
-        }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,rightController))
         {
             transform.root.Rotate(Vector3.up *22.5f);
