@@ -14,12 +14,18 @@ public class SetVisible : MonoBehaviour
     GameObject notice_canvas;
     bool isStart = true;
     int data = 0; // 이전으로 되돌아 가기 위한 변수
+    private GameObject SoundObject;
+    public string effSoundName = "Jump";
+    public string effSoundName1 = "Run";
+    private Vector2 axis;
 
     // Start is called before the first frame update
     void Start()
     {
         notice_canvas.SetActive(false);
         rigid = this.gameObject.transform.root.GetComponent<Rigidbody>();
+        SoundObject = GameObject.Find("JumpSound");
+        axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, leftController);
     }
 
     // Update is called once per frame
@@ -30,11 +36,14 @@ public class SetVisible : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.One,rightController))
             {
                 rigid.AddForce(Vector3.up*5,ForceMode.Impulse);
+                SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName);
             }
         }
+        if (axis.x>0 ||axis.y>0)
+        {
+            SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
+        } 
         StartCoroutine(OneBtn());
-        
-        
     }
 
     IEnumerator OneBtn()

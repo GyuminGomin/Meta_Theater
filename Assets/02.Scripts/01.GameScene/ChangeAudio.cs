@@ -5,17 +5,31 @@ using UnityEngine;
 public class ChangeAudio : MonoBehaviour
 {
     public string bgmName = "Hope";
+    public AudioClip effectAudio;
+    private AudioSource audio;
 
     private GameObject PlayerObject;
 
     void Start()
     {
         PlayerObject = GameObject.Find("astronaut");
+        audio = this.gameObject.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PLAYER")
             PlayerObject.GetComponent<AudioScript>().PlayBGM(bgmName);
-    } // 이건 다른 스크립트로 짜서 물체에 부딪히면 노래가 바뀌는 걸로 구현해야지 GameScene1
+            PlaySound("effSound");
+    }
+    void PlaySound(string action)
+    {
+        switch (action)
+        {
+            case "effSound":
+            audio.clip = effectAudio;
+            break;
+        }
+        audio.Play();
+    }
 }
