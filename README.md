@@ -1,7 +1,24 @@
 # Meta_Theater
 Unity_Project  
-this Project's subject is Meta_Theater Trailer  
-I'am 24 years old in korean. So, I learning about Unity for my happiness.  
-This Project made by Unity...  
+this Project's title is Meta_Theater Trailer  
+I'am 24 years old in korea. So, I learning about Unity for my happiness.  
+This Project made by unity Standard pipeline 3d 2021.2.12f version  
 
 using Assets...  
+1. Free Assets  
+(https://assetstore.unity.com/packages/tools/integration/log-viewer-12047) = LogViewer  
+(https://assetstore.unity.com/packages/3d/props/wooden-pbr-table-112005) = Wooden PBR Table  
+(https://assetstore.unity.com/packages/2d/textures-materials/tiny-planets-6577) = tiny Planet  
+(https://assetstore.unity.com/packages/tools/particles-effects/magic-mirror-lite-reflection-for-unity-34824) = magic mirror lite  
+(https://assetstore.unity.com/packages/3d/vehicles/space/space-station-free-3d-asset-hdrp-urp-built-in-188734) = Space Station Free  
+(https://assetstore.unity.com/packages/2d/textures-materials/sky/starfield-skybox-92717) = Starfield SkyBox  
+(https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) = Oculus integration  
+(https://assetstore.unity.com/packages/2d/textures-materials/sky/free-skyboxes-space-178953) = Free Skyboxes  
+(https://assetstore.unity.com/packages/tools/particles-effects/black-hole-free-66568) = Blackhole Free  
+(https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014) = Free AllSky 10  
+
+2. Pay Assets
+(https://assetstore.unity.com/packages/3d/characters/sci-fi-astronaut-hdrp-urp-built-in-rigged-200136#content) = Sci-Fi Astronaut  
+(https://assetstore.unity.com/packages/3d/environments/sci-fi/black-hole-universal-render-pipeline-208177) = Blackhole  
+(https://assetstore.unity.com/packages/vfx/particles/wormhole-tunnel-fx-150610) = Warmhole-tunnel  
+(https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-heavy-station-set-space-station-2-208210) = Sci-Fi Heavy Station Set SPACE STATION-2
