@@ -11,11 +11,9 @@ public class SceneMgr2 : MonoBehaviour
     private GameObject canvas;
     [SerializeField]
     private GameObject canvas_Translate;
-    GameObject Translate_Object;
 
     void Start()
     {
-        Translate_Object = GameObject.Find("audio2");
         canvas.gameObject.SetActive(false);
     }
 
@@ -30,7 +28,6 @@ public class SceneMgr2 : MonoBehaviour
     IEnumerator delayT()
     {
         canvas.SetActive(true);
-        Translate_Object.GetComponent<Translate3>().enabled = false;
         canvas_Translate.SetActive(false);
 
         notice.text = "3";

@@ -40,38 +40,38 @@ public class SetVisible : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickUp,leftController))
         {
             SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
-            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = true;
+            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = true;
         } 
         if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickUp,leftController))
         {
-            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = false;
+            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown,leftController))
         {
             SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
-            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = true;
+            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = true;
         } 
         if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickDown,leftController))
         {
-            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = false;
+            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,leftController))
         {
             SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
-            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = true;
+            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = true;
         } 
         if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickRight,leftController))
         {
-            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = false;
+            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickLeft,leftController))
         {
             SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
-            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = true;
+            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = true;
         } 
         if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickLeft,leftController))
         {
-            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = false;
+            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
         }
         StartCoroutine(OneBtn());
     }

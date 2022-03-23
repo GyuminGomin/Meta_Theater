@@ -14,7 +14,7 @@ public class PlayerCtrlSound : MonoBehaviour
 
     public BgmType[] BGMList;
     public AudioSource audio4;
-    // Start is called before the first frame update
+    
     void Start()
     {
         audio4 = this.gameObject.AddComponent<AudioSource>();

@@ -3,7 +3,9 @@ Unity_Project
 this Project's title is Meta_Theater Trailer  
 I'am 24 years old in korea. So, I learning about Unity for my happiness.  
 This Project made by unity Standard pipeline 3d 2021.2.12f version  
-
+  
+--- I still fee that I am lacking a lot. Because of poor connectivity to the code. ---  
+  
 using Assets...  
 1. Free Assets  
 (https://assetstore.unity.com/packages/tools/integration/log-viewer-12047) = LogViewer  
