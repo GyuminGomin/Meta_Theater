@@ -130,7 +130,7 @@ public class Translate2 : MonoBehaviour
         transl.text = "회전해!";
         yield return new WaitForSeconds(2f);
         transl.text = " The End, Doking Now!";
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(10f);
         canvas.SetActive(false);
     }
 

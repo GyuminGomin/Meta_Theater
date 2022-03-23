@@ -575,7 +575,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'If you want to start
 
-    Click Left Btn.2'
+    Click Left Btn.1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9423cf6b7d1032646a0c700167cc357d, type: 2}
   m_sharedMaterial: {fileID: -820205481097786277, guid: 9423cf6b7d1032646a0c700167cc357d, type: 2}

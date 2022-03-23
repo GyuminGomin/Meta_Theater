@@ -46,6 +46,33 @@ public class SetVisible : MonoBehaviour
         {
             SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = false;
         }
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown,leftController))
+        {
+            SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
+            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = true;
+        } 
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickDown,leftController))
+        {
+            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = false;
+        }
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,leftController))
+        {
+            SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
+            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = true;
+        } 
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickRight,leftController))
+        {
+            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = false;
+        }
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickLeft,leftController))
+        {
+            SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
+            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = true;
+        } 
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickLeft,leftController))
+        {
+            SoundObject.GetComponent<PlayerCtrlSound>().audio.loop = false;
+        }
         StartCoroutine(OneBtn());
     }
 

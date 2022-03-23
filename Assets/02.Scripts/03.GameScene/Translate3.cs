@@ -102,7 +102,7 @@ public class Translate3 : MonoBehaviour
         transl.text = "우리가 해냈어!";
         yield return new WaitForSeconds(2f);
         transl.text = " The End, go White Circle!!";
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(10f);
         canvas.SetActive(false);
     }
 

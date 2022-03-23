@@ -6,14 +6,14 @@ public class ChangeAudio : MonoBehaviour
 {
     public string bgmName = "Hope";
     public AudioClip effectAudio;
-    private AudioSource audio;
+    private AudioSource audio5;
 
     private GameObject PlayerObject;
 
     void Start()
     {
         PlayerObject = GameObject.Find("astronaut");
-        audio = this.gameObject.GetComponent<AudioSource>();
+        audio5 = this.gameObject.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,9 +27,9 @@ public class ChangeAudio : MonoBehaviour
         switch (action)
         {
             case "effSound":
-            audio.clip = effectAudio;
+            audio5.clip = effectAudio;
             break;
         }
-        audio.Play();
+        audio5.Play();
     }
 }

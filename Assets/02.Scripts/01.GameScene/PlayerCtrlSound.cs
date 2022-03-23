@@ -13,13 +13,13 @@ public class PlayerCtrlSound : MonoBehaviour
     }
 
     public BgmType[] BGMList;
-    public AudioSource audio;
+    public AudioSource audio4;
     // Start is called before the first frame update
     void Start()
     {
-        audio = this.gameObject.AddComponent<AudioSource>();
-        audio.playOnAwake = false;
-        audio.loop = false;
+        audio4 = this.gameObject.AddComponent<AudioSource>();
+        audio4.playOnAwake = false;
+        audio4.loop = false;
     }
 
     public void PlaySound(string action)
@@ -27,12 +27,12 @@ public class PlayerCtrlSound : MonoBehaviour
         switch (action)
         {
             case "Jump":
-            audio.clip = BGMList[0].audio;
+            audio4.clip = BGMList[0].audio;
             break;
             case "Run":
-            audio.clip = BGMList[1].audio;
+            audio4.clip = BGMList[1].audio;
             break;
         }
-        audio.Play();
+        audio4.Play();
     }
 }
