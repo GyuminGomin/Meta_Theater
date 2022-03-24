@@ -5,7 +5,8 @@ using TMPro;
 
 public class Translate3 : MonoBehaviour
 {
-    public AudioClip audio9_15;
+    public AudioClip audio9_12;
+    public AudioClip audio13_15;
     public AudioClip audio17_18;
     public AudioClip audio50_59;
     public AudioClip audio70_71;
@@ -14,7 +15,8 @@ public class Translate3 : MonoBehaviour
     public AudioClip audio79_81;
     public AudioClip audio109_110;
     public AudioClip audio113_115;
-    public AudioClip audio116_120;
+    public AudioClip audio116_117;
+    public AudioClip audio118_120;
     AudioSource audioSource;
     [SerializeField]
     TMP_Text transl;
@@ -35,11 +37,12 @@ public class Translate3 : MonoBehaviour
     {
         yield return new WaitForSeconds(9f);
         canvas.SetActive(true);
-        PlaySound("9~15");
+        PlaySound("9~12");
         transl.text = "다들 우리 태양계에 작별 인사할 준비 됐어?";
         yield return new WaitForSeconds(3f);
         canvas.SetActive(false);
         yield return new WaitForSeconds(1f);
+        PlaySound("13~15");
         canvas.SetActive(true);
         transl.text = "우리 은하계에";
         yield return new WaitForSeconds(2f);
@@ -93,11 +96,12 @@ public class Translate3 : MonoBehaviour
         canvas.SetActive(false);
         yield return new WaitForSeconds(1f);
         canvas.SetActive(true);
-        PlaySound("116~120");
+        PlaySound("116~117");
         transl.text = "우리가";
         yield return new WaitForSeconds(1f);
         canvas.SetActive(false);
         yield return new WaitForSeconds(1f);
+        PlaySound("118~120");
         canvas.SetActive(true);
         transl.text = "우리가 해냈어!";
         yield return new WaitForSeconds(2f);
@@ -110,8 +114,11 @@ public class Translate3 : MonoBehaviour
     {
         switch (action)
         {
-            case "9~15":
-            audioSource.clip = audio9_15;
+            case "9~12":
+            audioSource.clip = audio9_12;
+            break;
+            case "13~15":
+            audioSource.clip = audio13_15;
             break;
             case "17~18":
             audioSource.clip = audio17_18;
@@ -137,8 +144,11 @@ public class Translate3 : MonoBehaviour
             case "113~115":
             audioSource.clip = audio113_115;
             break;
-            case "116~120":
-            audioSource.clip = audio116_120;
+            case "116~117":
+            audioSource.clip = audio116_117;
+            break;
+            case "118~120":
+            audioSource.clip = audio118_120;
             break;
         }
         audioSource.Play();

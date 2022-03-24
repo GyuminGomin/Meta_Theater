@@ -34,7 +34,7 @@ public class SceneMgr_F : MonoBehaviour
         yield return new WaitForSeconds(time);
         canvas.SetActive(true);
         notice.text = "Thank you for your effort.\n Have a nice day!";
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3f);
         notice.text = "3";
         yield return new WaitForSeconds(1f);
         notice.text = "2";

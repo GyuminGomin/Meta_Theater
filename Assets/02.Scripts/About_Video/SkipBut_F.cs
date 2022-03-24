@@ -35,7 +35,7 @@ public class SkipBut_F : MonoBehaviour
                 canvas.SetActive(true);
                 my_video.Pause();
                 notice.text = "Do you want to skip? \n y : Left click again \n n : right click again";
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(3f);
                 isSkip = true;
             }
         }
@@ -43,7 +43,7 @@ public class SkipBut_F : MonoBehaviour
         {
             if (OVRInput.GetDown(OVRInput.Button.One,leftController))
             {
-                StartCoroutine(End(0.5f,1f));
+                StartCoroutine(End(2f,1f));
             }
             if (OVRInput.GetDown(OVRInput.Button.One,rightController)) // 스킵 취소
             {

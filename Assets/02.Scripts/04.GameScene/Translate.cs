@@ -34,7 +34,7 @@ public class Translate : MonoBehaviour
         translate.text = "그러지 말아요";
         yield return new WaitForSeconds(0.8f);
         canvas.SetActive(false);
-        yield return new WaitForSeconds(2.8f);
+        yield return new WaitForSeconds(3.8f);
         canvas.SetActive(true);
         translate.text = "분리";
         yield return new WaitForSeconds(0.8f);

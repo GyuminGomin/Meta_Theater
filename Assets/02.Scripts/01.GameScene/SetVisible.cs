@@ -35,44 +35,28 @@ public class SetVisible : MonoBehaviour
             {
                 rigid.AddForce(Vector3.up*5,ForceMode.Impulse);
                 SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName);
+                SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
             }
         }
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickUp,leftController))
+        if (SoundObject.transform.position.y<2 && SoundObject.transform.position.y>0)
         {
-            SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
-            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = true;
-        } 
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickUp,leftController))
-        {
-            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
-        }
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown,leftController))
-        {
-            SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
-            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = true;
-        } 
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickDown,leftController))
-        {
-            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
-        }
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,leftController))
-        {
-            SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
-            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = true;
-        } 
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickRight,leftController))
-        {
-            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
-        }
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickLeft,leftController))
-        {
-            SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
-            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = true;
-        } 
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickLeft,leftController))
-        {
-            SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
-        }
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickUp,leftController) ||
+                OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown,leftController) ||
+                OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickRight,leftController) ||
+                OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickLeft,leftController))
+            {
+                SoundObject.GetComponent<PlayerCtrlSound>().PlaySound(effSoundName1);
+                SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = true;
+            }
+            if(OVRInput.GetUp(OVRInput.Button.PrimaryThumbstick,leftController)||
+                OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickDown,leftController) ||
+                OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickRight,leftController) ||
+                OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickLeft,leftController))
+            {
+                SoundObject.GetComponent<PlayerCtrlSound>().GetComponent<AudioSource>().loop = false;
+                SoundObject.GetComponent<PlayerCtrlSound>().audio4.Stop();
+            }
+        }  
         StartCoroutine(OneBtn());
     }
 
