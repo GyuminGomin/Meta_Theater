@@ -38,7 +38,7 @@ public class Translate3 : MonoBehaviour
         yield return new WaitForSeconds(9f);
         canvas.SetActive(true);
         PlaySound("9~12");
-        transl.text = "다들 우리 태양계에 작별 인사할 준비 됐어?";
+        transl.text = "다들 우리 태양계에 \n 작별 인사할 준비 됐어?";
         yield return new WaitForSeconds(3f);
         canvas.SetActive(false);
         yield return new WaitForSeconds(1f);
