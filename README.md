@@ -30,4 +30,7 @@ using Assets...
 (https://assetstore.unity.com/packages/3d/characters/sci-fi-astronaut-hdrp-urp-built-in-rigged-200136#content) = Sci-Fi Astronaut  
 (https://assetstore.unity.com/packages/3d/environments/sci-fi/black-hole-universal-render-pipeline-208177) = Blackhole  
 (https://assetstore.unity.com/packages/vfx/particles/wormhole-tunnel-fx-150610) = Warmhole-tunnel  
-(https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-heavy-station-set-space-station-2-208210) = Sci-Fi Heavy Station Set SPACE STATION-2
+(https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-heavy-station-set-space-station-2-208210) = Sci-Fi Heavy Station Set SPACE STATION-2  
+(https://assetstore.unity.com/packages/3d/environments/landscapes/farm-field-159006) = Farm Field  
+(https://assetstore.unity.com/packages/vfx/shaders/legacy-mirror-shaders-and-post-effects-81728) = Legacy Mirror Shaders and Post Effects  
+(https://assetstore.unity.com/packages/3d/vehicles/space/space-shuttle-modular-rocket-214541) = Space shuttle - modular rocket
