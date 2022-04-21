@@ -32,7 +32,7 @@ public class MoveScene : MonoBehaviour
         yield return new WaitForSeconds(time);
         transform.Translate(Vector3.up*(-41)*Time.deltaTime, Space.World);
         yield return new WaitForSeconds(time2);
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(7);
     }
     IEnumerator Haptic(float time, float time1)
     {

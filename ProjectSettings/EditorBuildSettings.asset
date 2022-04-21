@@ -18,11 +18,20 @@ EditorBuildSettings:
     path: Assets/01.Scenes/02.GameScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/01.Scenes/2_3.ChangeScene.unity
+    guid: af95bf0f9afe08647a2b5091be7e8a75
+  - enabled: 1
     path: Assets/01.Scenes/03.GameScene.unity
     guid: 055188fc77477674f938254a7a8b9c54
   - enabled: 1
+    path: Assets/01.Scenes/3_4.ChangeScene.unity
+    guid: 3b0c4097872f9024ca83f0a8a97c8269
+  - enabled: 1
     path: Assets/01.Scenes/04.GameScene.unity
     guid: 91a0994df4963714486a9c359d109ab5
+  - enabled: 1
+    path: Assets/01.Scenes/4_video.ChangeScene.unity
+    guid: 3e7951885a36d5b4493e0aee2cd15af2
   - enabled: 1
     path: Assets/01.Scenes/FinalVideo.unity
     guid: 5ff1e0735a75d8d4ca9439bb2ad6477f
