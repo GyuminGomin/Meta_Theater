@@ -25,6 +25,7 @@ using Assets...
 (https://assetstore.unity.com/packages/3d/vegetation/trees/realistic-tree-pack-vol-1-50418) = Realistic tree pack  
 (https://assetstore.unity.com/packages/3d/vehicles/land/basic-truck-14042) = Basic Truck  
 (https://assetstore.unity.com/packages/3d/environments/roadways/kajaman-s-roads-free-52628) = kajaman's road  
+(https://assetstore.unity.com/packages/vfx/particles/particle-attractor-86896) = Particle Attractor  
 
 2. Pay Assets  
 (https://assetstore.unity.com/packages/3d/characters/sci-fi-astronaut-hdrp-urp-built-in-rigged-200136#content) = Sci-Fi Astronaut  

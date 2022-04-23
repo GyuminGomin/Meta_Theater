@@ -32,7 +32,7 @@ public class QuitBut2 : MonoBehaviour
                 canvas.SetActive(true);
                 ns_Cockpit_2.SetActive(false);
                 notice.text = "Do you want to Quit? \n y : Left click again \n n : Right click again";
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(0.5f);
                 isQuit = true;
             }
         }

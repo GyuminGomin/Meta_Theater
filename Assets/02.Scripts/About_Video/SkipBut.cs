@@ -9,8 +9,8 @@ public class SkipBut : MonoBehaviour
 {
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
-    public VideoPlayer my_video;
-    private bool isSkip = false;
+    private VideoPlayer my_video;
+    public bool isSkip = false;
     public TMP_Text notice; // skip 알림창
     [SerializeField]
     private GameObject canvas;
@@ -18,6 +18,7 @@ public class SkipBut : MonoBehaviour
     void Start()
     {
         canvas.SetActive(false);
+        my_video = this.gameObject.GetComponent<QuitBut>().my_video;
         notice.color = new Color32(255,255,255,255);
     }
 
@@ -35,7 +36,7 @@ public class SkipBut : MonoBehaviour
                 canvas.SetActive(true);
                 my_video.Pause();
                 notice.text = "Do you want to skip? \n y : Left click again \n n : right click again";
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(0.1f);
                 isSkip = true;
             }
         }
@@ -50,8 +51,15 @@ public class SkipBut : MonoBehaviour
             {
                 isSkip = false;
                 canvas.SetActive(false);
+                yield return new WaitForSeconds(0.2f);
                 my_video.Play();
             }
+        }
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger,leftController))
+        {
+            canvas.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+            isSkip = false;
         }
     }
 }

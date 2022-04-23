@@ -8,7 +8,7 @@ public class QuitBut : MonoBehaviour
 {
     public OVRInput.Controller leftController = OVRInput.Controller.LTouch;
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
-    private bool isQuit = false;
+    public bool isQuit = false;
     public VideoPlayer my_video;
     public TMP_Text notice;
     [SerializeField]
@@ -19,9 +19,9 @@ public class QuitBut : MonoBehaviour
     }
     void Update()
     {
-        StartCoroutine(Skip());
+        StartCoroutine(Quit());
     }
-    IEnumerator Skip()
+    IEnumerator Quit()
     {
         if(!isQuit)
         {
@@ -30,7 +30,7 @@ public class QuitBut : MonoBehaviour
                 canvas.SetActive(true);
                 my_video.Pause();
                 notice.text = "Do you want to Quit? \n y : Left click again \n n : Right click again";
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(0.2f);
                 isQuit = true;
             }
         }
@@ -45,8 +45,15 @@ public class QuitBut : MonoBehaviour
             {
                 isQuit = false;
                 canvas.SetActive(false);
+                yield return new WaitForSeconds(0.2f);
                 my_video.Play();
             }
+        }
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger,leftController))
+        {
+            canvas.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
+            isQuit = false;
         }
     }
 }

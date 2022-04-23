@@ -10,7 +10,7 @@ public class UserUsage : MonoBehaviour
     public OVRInput.Controller rightController = OVRInput.Controller.RTouch;
     private bool isClick = false;
     private int page = 0; // 설명서 페이지
-    public VideoPlayer my_video;
+    private VideoPlayer my_video;
     public TMP_Text notice; // 1
     public TMP_Text notice2; // 2
     public TMP_Text notice3; // 3
@@ -23,8 +23,7 @@ public class UserUsage : MonoBehaviour
     private GameObject canvas_3; // 3번쨰 page --> Button one 설명
     [SerializeField]
     private GameObject canvas_4; // 4번째 page --> Button two 설명
-    /* bool isSkip = false;
-    bool isQuit = false;*/
+    bool skipB, quitB;
 
     void Start()
     {
@@ -32,26 +31,30 @@ public class UserUsage : MonoBehaviour
         canvas_2.SetActive(false);
         canvas_3.SetActive(false);
         canvas_4.SetActive(false);
+        my_video = this.gameObject.GetComponent<QuitBut>().my_video;
+        skipB = this.gameObject.GetComponent<SkipBut>().isSkip;
+        quitB = this.gameObject.GetComponent<QuitBut>().isQuit;
     }
 
     void Update()
     {
         StartCoroutine(User());
-        /* if (OVRInput.GetDown(OVRInput.Button.One,leftController) && isSkip == true) // 매뉴얼 보고 있을때, 스킵버튼 누르면 매뉴얼 창이 닫히는 것
+        if (OVRInput.GetDown(OVRInput.Button.One,leftController) && skipB == false) // 매뉴얼 보고 있을때, 스킵버튼 누르면 매뉴얼 창이 닫히는 것
         {
             if (page == 1) canvas.gameObject.SetActive(false);
             if (page == 2) canvas_2.SetActive(false);
             if (page == 3) canvas_3.SetActive(false);
             if (page == 4) canvas_4.SetActive(false);
         }
-        if (OVRInput.GetDown(OVRInput.Button.One,rightController) && isSkip == true)
+        if (OVRInput.GetDown(OVRInput.Button.One,rightController) && skipB == true)
         {
+            my_video.Pause();
             if (page == 1) canvas.gameObject.SetActive(true);
             if (page == 2) canvas_2.SetActive(true);
             if (page == 3) canvas_3.SetActive(true);
             if (page == 4) canvas_4.SetActive(true);
         }
-        if (OVRInput.GetDown(OVRInput.Button.Two,leftController) && isQuit == true) // 매뉴얼 보고 있을때, 스킵버튼 누르면 매뉴얼 창이 닫히는 것
+        if (OVRInput.GetDown(OVRInput.Button.Two,leftController) && quitB == false) // 매뉴얼 보고 있을때, 스킵버튼 누르면 매뉴얼 창이 닫히는 것
         {
             if (page == 1) canvas.gameObject.SetActive(false);
             if (page == 2) canvas_2.SetActive(false);
@@ -59,13 +62,14 @@ public class UserUsage : MonoBehaviour
             if (page == 4) canvas_4.SetActive(false);
             
         }
-        if (OVRInput.GetDown(OVRInput.Button.Two,rightController) && isQuit == true)
+        if (OVRInput.GetDown(OVRInput.Button.Two,rightController) && quitB == true)
         {
+            my_video.Pause();
             if (page == 1) canvas.gameObject.SetActive(true);
             if (page == 2) canvas_2.SetActive(true);
             if (page == 3) canvas_3.SetActive(true);
             if (page == 4) canvas_4.SetActive(true);
-        } */ // 이 프로젝트의 코드들이 너무 독립성이 높아서, 문제가 생기는 부분을 고칠 수 가 없네..
+        }
     }
 
 
@@ -79,7 +83,7 @@ public class UserUsage : MonoBehaviour
                 canvas.SetActive(true); // 1
                 my_video.Pause();
                 notice.text = "This is manual, \n You can read and use it. \n Click button again";
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 isClick = true;
                 /* isSkip = true;
                 isQuit = true; */
@@ -92,14 +96,14 @@ public class UserUsage : MonoBehaviour
                 canvas.SetActive(false);
                 canvas_2.SetActive(true);
                 notice2.text = "Trigger Click = Muted Btn \n If you want to mute, \n You just click Trigger Btn";
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 page += 1; // 현재 page 2
             }
             if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger,rightController)) // 다시 비디오 시작
             {
                 canvas.SetActive(false);
                 my_video.Play();
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 isClick = false;
                 /* isSkip = false;
                 isQuit = false; */
@@ -113,14 +117,14 @@ public class UserUsage : MonoBehaviour
                 canvas_2.SetActive(false);
                 canvas_3.SetActive(true);
                 notice3.text = "Left Btn.One = Skip Btn \n Right Btn.One = Cancle Skip Btn";
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 page += 1; // 현재 page 3
             }
             if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger,rightController)) // 1페이지로 돌아가기
             {
                 canvas_2.SetActive(false);
                 canvas.SetActive(true);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 page -= 1; // 현재 page 1
             }
         }
@@ -131,14 +135,14 @@ public class UserUsage : MonoBehaviour
                 canvas_3.SetActive(false);
                 canvas_4.SetActive(true);
                 notice4.text = "Left Btn.Two = Quit Btn \n Right Btn.Two = Cancle Quit Btn";
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 page += 1; // 현재 page 4
             }
             if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger,rightController)) // 2페이지로 돌아가기
             {
                 canvas_3.SetActive(false);
                 canvas_2.SetActive(true);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 page -= 1; // 현재 page 2
             }
         }
@@ -149,7 +153,7 @@ public class UserUsage : MonoBehaviour
             {
                 canvas_4.SetActive(false);
                 my_video.Play();
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 isClick = false;
                 /* isSkip = false;
                 isQuit = false; */
@@ -159,7 +163,7 @@ public class UserUsage : MonoBehaviour
             {
                 canvas_4.SetActive(false);
                 canvas_3.SetActive(true);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 page -= 1; // 현재 page 3
             }
         }
